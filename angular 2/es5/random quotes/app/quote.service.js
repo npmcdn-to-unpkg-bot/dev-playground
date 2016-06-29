@@ -1,9 +1,8 @@
-(function() {
+(function(app) {
   var Class = ng.core.Class;
   var Component = ng.core.Component;
-  var bootstrap = ng.platformBrowserDynamic.bootstrap;
   
-  var QuoteService = Class({
+  app.QuoteService = Class({
     constructor: function QuoteService() { 
       this.quotes = quotes;
     },
@@ -25,47 +24,6 @@
       }
       generate(count);
     }
-  });
-  
-  // Mock QouteService Class for testing
-  // var MockQuoteService = Class({
-  //   extends: QuoteService,
-  //   constructor: function MockQuoteService() { },
-  //   getRandomQuote: function () {
-  //     return {
-  //       line:"A mock quote.",
-  //       author: "Mock Author"
-  //     };
-  //   }
-  // });
-  
-  var RandomQuoteComponent = Component({
-    selector: 'random-quote',
-    template: '<p>{{ quote.line }}</p><em>-- {{ quote.author }}</em>'
-  })
-  .Class({
-    constructor: [QuoteService, function RandomQuoteComponent(quoteService){ 
-      var _self = this;
-      
-      quoteService.generateRandomQuotes(3, 3000, function(quote) {
-          _self.quote = quote;
-      });
-    }]
-  });
-  
-  var AppComponent = Component({
-    selector: 'my-app',
-    template: '<h1>Random Quotes</h1><p><random-quote></random-quote></p>',
-    directives: [RandomQuoteComponent],
-    providers: [QuoteService]
-  })
-  .Class({
-    constructor: function AppComponent(){}
-  });
-  
-  // bootstrap Angular App
-  document.addEventListener('DOMContentLoaded', function() {
-    bootstrap(AppComponent);
   });
   
   var quotes = [
@@ -110,4 +68,4 @@
       "author": "Tom Cargill"
     }
   ];
-})();
+})(window.app || (window.app = {}));
