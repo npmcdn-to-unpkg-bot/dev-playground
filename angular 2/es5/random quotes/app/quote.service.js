@@ -1,6 +1,5 @@
 (function(app) {
   var Class = ng.core.Class;
-  var Component = ng.core.Component;
   
   app.QuoteService = Class({
     constructor: function QuoteService() { 
