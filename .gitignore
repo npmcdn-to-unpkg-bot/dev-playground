@@ -1,5 +1,5 @@
 .DS_Store
 node_modules/
 typings/
-app/**/*.js
-app/**/*.js.map
+typscript/**/*.js
+typscript/**/*.js.map
