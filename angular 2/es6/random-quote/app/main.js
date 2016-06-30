@@ -1,10 +1,7 @@
 'use strict';
 
-(function (app) {
-  var bootstrap = ng.platformBrowserDynamic.bootstrap;
-  var AppComponent = app.AppComponent;
+var _platformBrowserDynamic = require('@angular/platform-browser-dynamic');
 
-  document.addEventListener('DOMContentLoaded', function () {
-    bootstrap(AppComponent);
-  });
-})(window.app || (window.app = {}));
+var _app = require('./app.component');
+
+(0, _platformBrowserDynamic.bootstrap)(_app.AppComponent);

@@ -1,9 +1,4 @@
-(function(app) {
-  var bootstrap = ng.platformBrowserDynamic.bootstrap;
-  var AppComponent = app.AppComponent;
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {AppComponent} from './app.component';
 
-  document.addEventListener('DOMContentLoaded', function() {
-    bootstrap(AppComponent);
-  });
-
-})(window.app || (window.app = {}));
+bootstrap(AppComponent);
