@@ -1,4 +1,4 @@
-System.register(['@angular/core', './exchange-currency.service', './currency-select.component'], function(exports_1, context_1) {
+System.register(['@angular/core', './exchange-currency.service', './currency-select.component', "./fixed.pipe"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', './exchange-currency.service', './currency-sel
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, exchange_currency_service_1, currency_select_component_1;
+    var core_1, exchange_currency_service_1, currency_select_component_1, fixed_pipe_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['@angular/core', './exchange-currency.service', './currency-sel
             },
             function (currency_select_component_1_1) {
                 currency_select_component_1 = currency_select_component_1_1;
+            },
+            function (fixed_pipe_1_1) {
+                fixed_pipe_1 = fixed_pipe_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -47,7 +50,8 @@ System.register(['@angular/core', './exchange-currency.service', './currency-sel
                         selector: 'currency-converter',
                         providers: [exchange_currency_service_1.ExchangeCurrencyService],
                         directives: [currency_select_component_1.CurrencySelectComoponent],
-                        template: "\n    <input type=\"number\" [(ngModel)]=\"baseAmount\" [class.error]=\"isInvalid(baseAmount)\">\n    \n    <p>\n        <strong>{{ baseAmount }}</strong> \n        <currency-select [(selected)]=\"baseCurrency\"></currency-select> = \n        <strong>{{ targetAmount }}</strong> \n        <currency-select [(selected)]=\"targetCurrency\"></currency-select>\n    </p>\n    <p *ngIf=\"isInvalid(baseAmount)\">Please add a valid number</p>\n  ",
+                        pipes: [fixed_pipe_1.FixedPipe],
+                        template: "\n    <input type=\"number\" [(ngModel)]=\"baseAmount\" [class.error]=\"isInvalid(baseAmount)\">\n    \n    <p>\n        <strong>{{ baseAmount }}</strong> \n        <currency-select [(selected)]=\"baseCurrency\"></currency-select> = \n        <strong>{{ targetAmount | fixed }}</strong> \n        <currency-select [(selected)]=\"targetCurrency\"></currency-select>\n    </p>\n    <p *ngIf=\"isInvalid(baseAmount)\">Please add a valid number</p>\n  ",
                         styles: ["\n      input[type=number]{\n        width: 100px;\n        padding: 10px;  \n      }\n      \n      .error {\n          background-color: #c86060;\n      }\n    "]
                     }), 
                     __metadata('design:paramtypes', [exchange_currency_service_1.ExchangeCurrencyService])

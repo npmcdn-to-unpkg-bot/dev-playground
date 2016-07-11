@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { ExchangeCurrencyService } from './exchange-currency.service';
 import { CurrencySelectComoponent } from './currency-select.component';
+import { FixedPipe } from "./fixed.pipe";
 
 @Component({
   selector: 'currency-converter',
   providers: [ExchangeCurrencyService],
   directives: [ CurrencySelectComoponent ],
+  pipes: [FixedPipe],
   template: `
     <input type="number" [(ngModel)]="baseAmount" [class.error]="isInvalid(baseAmount)">
     
     <p>
         <strong>{{ baseAmount }}</strong> 
         <currency-select [(selected)]="baseCurrency"></currency-select> = 
-        <strong>{{ targetAmount }}</strong> 
+        <strong>{{ targetAmount | fixed }}</strong> 
         <currency-select [(selected)]="targetCurrency"></currency-select>
     </p>
     <p *ngIf="isInvalid(baseAmount)">Please add a valid number</p>
